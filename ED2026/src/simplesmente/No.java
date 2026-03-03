@@ -3,6 +3,7 @@ package simplesmente;
 public class No {
 	private int info; //atributo será do tipo de dado necessário para armazenamento
 	private No prox;
+	
 	public No (int elem){
 		this.info = elem;
 		this.prox = null; //esta linha é opcional, pois o prox é automaticamente definido como null

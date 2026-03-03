@@ -92,6 +92,27 @@ public class ListaSimples {
 		}
 	}
 	
+	public boolean inserirDeterminado(int novo, int x) {
+		if (this.eVazia()) {
+			return false;
+		} else {
+			No achou = this.pesquisarNo(x);
+			if (achou == null) {
+				return false;
+			} else {
+				No novoNo = new No(novo);
+				novoNo.setProx(achou.getProx());
+				if (achou == this.ult) {
+					this.ult = novoNo;
+				}
+				achou.setProx(novoNo);
+				this.quantNos++;
+				return true;
+			}
+		}
+		
+	}
+	
 	//mostra todo o conteúdo da lista
 	public String toString(){
 		String msg = "";

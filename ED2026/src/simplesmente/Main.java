@@ -12,10 +12,11 @@ public class Main {
 			do{
 				System.out.println("Escolha uma opção:\n"
 						+ "1. Inserir nó no final da lista\n"
-						+ "2. Pesquisar um determinado valor na lista\n"
-						+ "3. Remover um determinado nó da lista\n"
-						+ "4. Mostrar conteúdo a lista\n"
-						+ "5. Sair do programa");
+						+ "2. Inserir em determinada posição\n"
+						+ "3. Pesquisar um determinado valor na lista\n"
+						+ "4. Remover um determinado nó da lista\n"
+						+ "5. Mostrar conteúdo a lista\n"
+						+ "6. Sair do programa");
 				opcao = scan.nextInt();
 				switch (opcao){
 				case 1:
@@ -24,6 +25,14 @@ public class Main {
 					System.out.println("operação realizada!");
 					break;
 				case 2:
+					System.out.println("digite um valor inteiro e depois de qual numero deseja:");
+					if ((lista.inserirDeterminado(scan.nextInt(), scan.nextInt()) == false)) {
+						System.out.println("valor não encontrado");
+					} else {
+						System.out.println("Operação realizada");
+					}
+					scan.nextLine();
+				case 3:
 					System.out.println("digite o valor inteiro a"
 							+ " ser procurado na lista:");
 					if (lista.pesquisarNo(scan.nextInt()) != null){
@@ -32,7 +41,7 @@ public class Main {
 						System.out.println("valor não encontrado.");
 					}
 					break;
-				case 3:
+				case 4:
 					System.out.println("digite o valor inteiro a"
 							+ " ser removido da lista:");
 					if (lista.removerNo(scan.nextInt())){
@@ -41,10 +50,10 @@ public class Main {
 						System.out.println("valor não encontrado");
 					}
 					break;
-				case 4:
+				case 5:
 					System.out.println("lista: "+lista.toString());
 					break;
-				case 5:
+				case 6:
 					System.out.println("FIM DO PROGRAMA");
 					break;
 				default:
