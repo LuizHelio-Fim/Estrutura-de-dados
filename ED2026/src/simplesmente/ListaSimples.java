@@ -112,6 +112,20 @@ public class ListaSimples {
 		}
 		
 	}
+	//atv 2 - questao 7
+	public int somarTodos() {
+		if (this.eVazia()) {
+			return 0;
+		} else {
+			int soma = 0;
+			No atual = this.prim;
+			while (atual != null) {
+				soma += atual.getInfo();
+				atual = atual.getProx();
+			}
+			return soma;
+		}
+	}
 	
 	//mostra todo o conteúdo da lista
 	public String toString(){
