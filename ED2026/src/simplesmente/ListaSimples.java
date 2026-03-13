@@ -127,6 +127,92 @@ public class ListaSimples {
 		}
 	}
 	
+	//atv 2 - questao 8
+	public double mediaTodos() {
+		if (this.eVazia()) {
+			return 0;
+		} else {
+			double soma = 0;
+			No atual = this.prim;
+			int i = 0;
+			while (atual != null) {
+				soma += atual.getInfo();
+				atual = atual.getProx();
+				i++;
+			}
+			return soma/i;
+		}
+	}
+	
+	//atv2 - questao 9
+	public ListaSimples valoresPares() {
+		if (this.eVazia()) {
+			return null;
+		} else {
+			ListaSimples pares = new ListaSimples();
+			No atual = this.prim;
+			while (atual != null) {
+				if(atual.getInfo()%2 == 0) {
+					pares.inserirUltimo(atual.getInfo());					
+				}
+				atual = atual.getProx();
+			}
+			return pares;
+		}	
+	}
+	
+	//atv2 - questao 10
+	public boolean compararListas(ListaSimples L1, ListaSimples L2) {
+		No atual1 = L1.prim;
+		No atual2 = L2.prim;
+		while (atual1 != null && atual2 != null) {
+			if (atual1.getInfo() != atual2.getInfo()) {
+				return false;
+			}
+			atual1 = atual1.getProx();
+			atual2 = atual2.getProx();
+		}
+		return atual1 == null && atual2 == null;
+	}
+	
+	//atv2 - questao 11
+	public int encontraAltera(int num){
+		if (this.eVazia()) {
+			return 0;
+		} else {
+			No atual = this.prim;
+			while (atual != null) {
+				if (atual.getInfo() == num) {
+					atual.setInfo(50);
+					return 1;
+				}
+				atual = atual.getProx();
+			}
+			return 2;
+		}
+	}
+	
+	//atv2 - questao 12
+	public int procuraInsereSeNaoExistir(int num) {
+		if(this.eVazia()) {
+			return 0;
+		} else {
+			No atual = this.prim;
+			int quantNosAparece = 0;
+			while (atual != null) {
+				if (atual.getInfo() == num) {
+					quantNosAparece++;
+				}
+				atual = atual.getProx();
+			}
+			if (quantNosAparece == 0) {
+				this.inserirUltimo(num);
+				return 0;
+			}
+			return quantNosAparece;
+		}
+	}
+	
 	//mostra todo o conteúdo da lista
 	public String toString(){
 		String msg = "";
