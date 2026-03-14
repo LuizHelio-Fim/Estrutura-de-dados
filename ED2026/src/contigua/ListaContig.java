@@ -71,6 +71,23 @@ public class ListaContig {
 		}
 	}
 	
+	//insere um novo elemento depois de um determinado numero
+	public boolean inserirApos(int x,int num) {
+		if (this.eCheia()) return false;
+		
+		int pos = this.pesquisarNo(x);
+		if (pos == this.fim) return false;
+		
+		for (int i=this.fim; i>pos+1;i--) {
+			this.info[i] = this.info[i-1];
+		}
+		this.info[pos+1] = num;
+		this.fim++;
+		
+		return true;
+		
+	}
+	
 	//retorna uma String com todo o conteúdo da lista.
 	public String toString(){
 		String msg="";
