@@ -11,6 +11,7 @@ public class TestarQuest09 {
 		lista.inserirUltimo(5);
 		lista.inserirUltimo(6);
 		System.out.println("Valores pares da lista:" + lista.valoresPares());
+		System.out.println("Valores pares da lista de outra forma: " + lista.valoresParesProf());
 	}
 
 }

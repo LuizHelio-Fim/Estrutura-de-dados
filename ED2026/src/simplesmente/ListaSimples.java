@@ -132,15 +132,8 @@ public class ListaSimples {
 		if (this.eVazia()) {
 			return 0;
 		} else {
-			double soma = 0;
-			No atual = this.prim;
-			int i = 0;
-			while (atual != null) {
-				soma += atual.getInfo();
-				atual = atual.getProx();
-				i++;
-			}
-			return soma/i;
+			double soma = this.somarTodos();
+			return soma/this.quantNos;
 		}
 	}
 	
@@ -161,6 +154,19 @@ public class ListaSimples {
 		}	
 	}
 	
+	//atv 2 - questao 9 - Prof
+	public String valoresParesProf() {
+		String resposta = "";
+		No atual = this.prim;
+		while (atual != null) {
+			if (atual.getInfo()%2 == 0) {
+				resposta += atual.getInfo() + " ";
+			}
+			atual = atual.getProx();
+		}
+		return resposta;
+	}
+	
 	//atv2 - questao 10
 	public boolean compararListas(ListaSimples L1, ListaSimples L2) {
 		No atual1 = L1.prim;
@@ -175,27 +181,41 @@ public class ListaSimples {
 		return atual1 == null && atual2 == null;
 	}
 	
-	//atv2 - questao 11
-	public int encontraAltera(int num){
-		if (this.eVazia()) {
-			return 0;
-		} else {
-			No atual = this.prim;
-			while (atual != null) {
-				if (atual.getInfo() == num) {
-					atual.setInfo(50);
-					return 1;
-				}
-				atual = atual.getProx();
+	//atv2 - questao 10 - prof
+	public boolean verificarIdenticas(ListaSimples lista2) {
+		if (this.quantNos != lista2.quantNos) return false;
+		
+		No atual = this.prim;
+		No atual2 = lista2.getPrim();
+		while (atual != null) {
+			if(atual.getInfo() != atual2.getInfo()) {
+				return false;
 			}
-			return 2;
+			atual = atual.getProx();
+			atual2 = atual2.getProx();
 		}
+		return true;
 	}
+	
+	//atv2 - questao 11
+	public boolean encontraAltera(int num){
+		No atual = this.prim;
+		while (atual != null) {
+			if (atual.getInfo() == num) {
+				atual.setInfo(50);
+				return true;
+			}
+			atual = atual.getProx();
+		}
+		return false;
+	}
+	
 	
 	//atv2 - questao 12
 	public int procuraInsereSeNaoExistir(int num) {
 		if(this.eVazia()) {
-			return 0;
+			this.inserirUltimo(num);
+			return 1;
 		} else {
 			No atual = this.prim;
 			int quantNosAparece = 0;
@@ -207,7 +227,7 @@ public class ListaSimples {
 			}
 			if (quantNosAparece == 0) {
 				this.inserirUltimo(num);
-				return 0;
+				return 1;
 			}
 			return quantNosAparece;
 		}

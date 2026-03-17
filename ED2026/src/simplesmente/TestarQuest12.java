@@ -17,11 +17,11 @@ public class TestarQuest12 {
 		System.out.println("Digite um numero para ser buscado na lista: ");
 		int novo = sc.nextInt();
 		int procurar = lista.procuraInsereSeNaoExistir(novo);
-		if (procurar == 0) {
+		if (procurar == 1) {
 			System.out.println("Valor nao encontrado ou lista vazia");
 			System.out.println("Nova lista: " + lista.toString());
 		} else {
-			System.out.println("O valor aparece " + procurar + " na lista");
+			System.out.println("O valor aparece " + procurar + " vezes na lista");
 		}
 		
 		sc.close();

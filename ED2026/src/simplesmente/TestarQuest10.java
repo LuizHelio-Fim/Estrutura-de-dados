@@ -20,6 +20,8 @@ public class TestarQuest10 {
 		lista2.inserirUltimo(6);
 		
 		System.out.println("As listas sao iguais? " + lista1.compararListas(lista1, lista2));
+		
+		System.out.println("As listas sao iguais? " + lista1.verificarIdenticas(lista2));
 	}
 
 }

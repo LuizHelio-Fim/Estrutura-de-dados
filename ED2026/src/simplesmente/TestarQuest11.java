@@ -15,11 +15,9 @@ public class TestarQuest11 {
 		
 		System.out.println("Digite um valor para alterar: ");
 		int alterar = sc.nextInt();
-		int teste = lista.encontraAltera(alterar);
+		boolean teste = lista.encontraAltera(alterar);
 		
-		if (teste == 0) {
-			System.out.println("Lista Vazia");
-		} else if (teste == 1) {
+		if (teste) {
 			System.out.println("Valor alterado, nova lista: " + lista.toString());
 		} else {
 			System.out.println("Valor nao encontrado");

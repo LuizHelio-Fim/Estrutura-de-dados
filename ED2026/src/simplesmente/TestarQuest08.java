@@ -6,7 +6,7 @@ public class TestarQuest08 {
 		ListaSimples lista = new ListaSimples();
 		lista.inserirUltimo(5);
 		lista.inserirUltimo(6);
-		lista.inserirUltimo(6);
+		lista.inserirUltimo(7);
 		System.out.println("Média dos numeros da lista: " + lista.mediaTodos());;
 	}
 
