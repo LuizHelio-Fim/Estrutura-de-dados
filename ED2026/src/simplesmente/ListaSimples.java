@@ -233,6 +233,40 @@ public class ListaSimples {
 		}
 	}
 	
+	//atv 2/2 - questao 1
+	public boolean concatenarLista(ListaSimples L2) {
+		if (this.eVazia() || L2.eVazia()) return false;
+		
+		this.ult.setProx(L2.prim);
+		this.setQuantNos(this.getQuantNos() + L2.getQuantNos());
+		this.setUlt(L2.getUlt());
+		L2.setPrim(null);
+		L2.setUlt(null);
+		L2.setQuantNos(0);
+		return true;
+	}
+	
+	//atv 2/2 - questao 2
+	public boolean dividirLista(ListaSimples L2) {
+		if (this.eVazia() || !L2.eVazia()) return false;
+		
+		int metade = this.quantNos / 2;
+		
+		No atual = this.prim;
+		for (int i=0; i < metade -1 ; i++) {
+			atual = atual.getProx();
+		}
+		
+		L2.setPrim(atual.getProx());
+		L2.setUlt(this.getUlt());
+		L2.quantNos = this.quantNos - metade;
+		this.quantNos = metade;
+		atual.setProx(null);
+		this.setUlt(atual);
+		return true;
+		
+	}
+	
 	//mostra todo o conteúdo da lista
 	public String toString(){
 		String msg = "";
