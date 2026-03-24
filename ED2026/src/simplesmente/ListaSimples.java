@@ -267,6 +267,48 @@ public class ListaSimples {
 		
 	}
 	
+	//atv 2/2 - questao 3
+	public int efetuarTrocas(int num1, int num2) {
+		No atual = this.prim;
+		int soma = 0;
+		
+		while(atual != null) {
+			if (atual.getInfo() == num1) {
+				atual.setInfo(num2);
+				soma++;
+			}
+			atual = atual.getProx();
+		}
+		return soma;
+	}
+	
+	//atv 2/2 - questao 4
+	public ListaSimples gerarLista(int[] vet) {
+		ListaSimples lista = new ListaSimples();
+		for (int i=0; i < vet.length; i++) {
+			lista.inserirUltimo(vet[i]);
+		}
+		return lista;
+	}
+	
+	//atv 2/2 - questao 5
+	public void removerNElementos(int num) {
+		if (!this.eVazia()) {
+			if (num >= this.quantNos) {
+				this.prim = null;
+				this.ult = null;
+				this.quantNos = 0;
+			} else {
+				int cont = 1;
+				
+				while (cont <= num) {
+					this.prim = this.prim.getProx();
+					cont++;
+				}
+			}
+		}
+	}
+	
 	//mostra todo o conteúdo da lista
 	public String toString(){
 		String msg = "";
