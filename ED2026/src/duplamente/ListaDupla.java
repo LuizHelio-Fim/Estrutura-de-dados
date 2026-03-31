@@ -89,6 +89,59 @@ public class ListaDupla {
 		}
 	}
 	
+	//atv 05 - 1
+	public void concatenarListas(ListaDupla l2) {
+		if (this.eVazia() && !l2.eVazia()) {
+			this.prim = l2.getPrim();
+			this.ult = l2.getUlt();
+			this.quantNos = l2.quantNos;
+			
+		} else {
+			this.ult.setProx(l2.prim);
+			l2.prim.setAnt(this.ult); 	// ponteiro apontando pra trás
+			this.ult = l2.ult;
+			this.quantNos += l2.quantNos;
+		}
+		l2.prim = null;
+		l2.ult = null;
+		l2.quantNos = 0;
+	}
+	
+	//atv 05 - 2
+	public ListaDupla dividirListas() {
+		ListaDupla l2 = new ListaDupla();
+		if (this.eVazia()) return l2;
+		
+		NoDupla atual = this.prim;
+		int metade = this.quantNos/2;
+		for (int i=0; i <= metade;i++) {
+			atual = atual.getProx();
+		}
+		
+		l2.setPrim(atual.getProx());
+		l2.prim.setAnt(null);
+		l2.setUlt(ult);
+		l2.setQuantNos(metade);
+		this.setUlt(atual);
+		this.ult.setProx(null);
+		this.setQuantNos(metade);
+		return l2;
+	}
+	
+	//atv 05 - 3
+	public int maiorValor() {
+		NoDupla maior = this.prim;
+		NoDupla atual = this.prim;
+		while (atual != null) {
+			if (atual.getInfo() > maior.getInfo()) {
+				maior = atual;
+			}
+			atual = atual.getProx();
+		}
+		return maior.getInfo();
+		
+	}
+	
 	public String toString(){
 		String msg="";
 		NoDupla atual = this.prim;
