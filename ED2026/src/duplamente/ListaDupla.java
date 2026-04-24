@@ -142,6 +142,131 @@ public class ListaDupla {
 		
 	}
 	
+	//atv 05 - 4
+	public double calcularMediaAritmetica() {
+		if (eVazia()) return 0.0;
+		
+		NoDupla atual = this.prim;
+		double total = 0.0;
+		
+		while (atual != null) {
+			total += atual.getInfo();
+			atual = atual.getProx();
+		}
+		return total / this.quantNos;
+	}
+	
+	//atv 05 - 5
+	public boolean removerZeros() {
+		NoDupla atual = this.prim;
+		int totalItens = this.quantNos;		// se o total no comeco for o mesmo que no final entao nenhum item foi retirado
+		
+		while (atual != null) {
+	        NoDupla proximo = atual.getProx();
+
+	        if (atual.getInfo() == 0) {
+	            if (atual == this.prim) {
+	                this.prim = atual.getProx();
+	                if (this.prim == null) {
+	                    this.ult = null;
+	                } else {
+	                    this.prim.setAnt(null);
+	                }
+	            } else if (atual == this.ult) {
+	                this.ult = this.ult.getAnt();
+	                this.ult.setProx(null);
+	            } else {
+	                atual.getProx().setAnt(atual.getAnt());
+	                atual.getAnt().setProx(atual.getProx());
+	            }
+	            this.quantNos--;
+	        }
+	        atual = proximo;
+	    }
+		return totalItens == this.quantNos;
+	}
+	
+	//atv 05 - 6
+	public void removerValoresRepetidos() {
+	    if (this.prim == null) return;
+	    NoDupla atual = this.prim;
+
+	    while (atual != null) {
+	        NoDupla comparar = atual.getProx();
+	        while (comparar != null) {
+	            NoDupla proximo = comparar.getProx();
+
+	            if (atual.getInfo() == comparar.getInfo()) {
+	                if (comparar == this.ult) {
+	                    this.ult = comparar.getAnt();
+	                    this.ult.setProx(null);
+	                } else {
+	                    comparar.getAnt().setProx(comparar.getProx());
+	                    comparar.getProx().setAnt(comparar.getAnt());
+	                }
+	                this.quantNos--;
+	            }
+	            comparar = proximo;
+	        }
+	        atual = atual.getProx();
+	    }
+	}
+	
+	//atv 05 - 7
+	//Tipo do dado guardado não condiz com a lista (objeto com nome e altura)
+	
+	//atv05 - 8
+	public ListaDupla valoresAcimaDe100() {
+		if (eVazia()) return new ListaDupla();
+		
+		ListaDupla valoresAcima100 = new ListaDupla();
+		NoDupla atual = this.prim;
+		
+		while (atual != null) {
+			if (atual.getInfo() > 100) {
+				valoresAcima100.inserirUltimo(atual.getInfo());
+			}
+			atual = atual.getProx();
+		}
+		return valoresAcima100;
+	}
+	
+	//atv05 - 9
+	//Tipo do dado guardado não condiz com a lista (String)
+	
+	//atv05 - 10
+	public void inserirOrdenado (int num) {
+		if (eVazia()) {
+		    this.prim = this.ult = new NoDupla(num);
+		    this.quantNos++;
+		    return;
+		}
+		
+		NoDupla novoNo = new NoDupla(num);
+		if (num <= this.prim.getInfo()) {
+			novoNo.setProx(this.prim);
+			this.prim.setAnt(novoNo);
+			this.prim = novoNo;
+			
+		} else if (num >= this.ult.getInfo()) {
+			novoNo.setAnt(this.ult);
+			this.ult.setProx(novoNo);
+			this.ult = novoNo;
+		} else {
+			NoDupla atual = this.prim;
+			
+			while (atual.getInfo() < num) {
+				atual = atual.getProx();
+			}
+			novoNo.setProx(atual);
+			novoNo.setAnt(atual.getAnt());
+			atual.getAnt().setProx(novoNo);
+			atual.setAnt(novoNo);
+
+		}
+		this.quantNos++;
+	}
+	
 	public String toString(){
 		String msg="";
 		NoDupla atual = this.prim;
