@@ -1,4 +1,7 @@
 package pilha;
+
+import java.util.Arrays;
+
 public class PilhaContig {
 	private int [] info;
 	private int topo;
@@ -34,5 +37,88 @@ public class PilhaContig {
 		}else{
 			return this.info[--this.topo];
 		}
+	}
+	
+	//Atv 06 - 2
+	public void retirarMaiorQue10() {
+		PilhaContig aux = new PilhaContig(topo);
+		int num;
+		for (int i=0; i < topo; i++) {
+			num = this.pop();
+			if (num <= 10 ) {
+				aux.push(num);
+			}
+		}
+		while (!aux.eVazia()) {
+			this.push(aux.pop());
+		}
+	}
+	
+	//Atv 06 - 3
+	public int compararPilhas(PilhaContig pilha2) {
+	    if (this.topo != pilha2.topo) {
+	        return 0;
+	    }
+	    PilhaContig aux1 = new PilhaContig(this.topo);
+	    PilhaContig aux2 = new PilhaContig(pilha2.topo);
+	    int numP1, numP2;
+
+	    while (!this.eVazia()) {
+	        numP1 = this.pop();
+	        numP2 = pilha2.pop();
+
+	        if (numP1 != numP2) {
+	            aux1.push(numP1);
+	            aux2.push(numP2);
+
+	            while (!aux1.eVazia()) {
+	                this.push(aux1.pop());
+	            }
+	            while (!aux2.eVazia()) {
+	                pilha2.push(aux2.pop());
+	            }
+
+	            return 0;
+	        }
+
+	        aux1.push(numP1);
+	        aux2.push(numP2);
+	    }
+
+	    while (!aux1.eVazia()) {
+	        this.push(aux1.pop());
+	    }
+	    while (!aux2.eVazia()) {
+	        pilha2.push(aux2.pop());
+	    }
+
+	    return 1;
+	}
+	
+	//atv06 - 7
+	public int calcularFatorial(int num) {
+		int fatorial = 1;
+		while (num > 0) {
+			this.push(num--);
+		}
+		
+		while (!this.eVazia()) {
+			fatorial *= this.pop();
+		}
+		
+		return fatorial;
+	}
+	
+	@Override
+	public String toString() {
+	    StringBuilder sb = new StringBuilder();
+
+	    for (int i = topo - 1; i >= 0; i--) {
+	        sb.append("| ").append(info[i]).append(" |\n");
+	    }
+
+	    sb.append("-----");
+
+	    return sb.toString();
 	}
 }
