@@ -109,6 +109,28 @@ public class PilhaContig {
 		return fatorial;
 	}
 	
+	//atv06 - 8
+	public String converterDecimalBinario(int num) {
+		if (num == 0) return "0";
+		
+		PilhaContig pilha = new PilhaContig(100);
+		int bin;
+		
+		while (num != 0) {
+			bin = num%2;
+			pilha.push(bin);
+			num /= 2;
+		}
+		
+		String binario = "";
+		while(!pilha.eVazia()) {
+			binario += pilha.pop();			
+		}
+		
+		return binario;
+		
+	}
+	
 	@Override
 	public String toString() {
 	    StringBuilder sb = new StringBuilder();
