@@ -2,6 +2,9 @@ package pilha;
 
 import java.util.Arrays;
 
+import duplamente.ListaDupla;
+import duplamente.NoDupla;
+
 public class PilhaContig {
 	private int [] info;
 	private int topo;
@@ -129,6 +132,69 @@ public class PilhaContig {
 		
 		return binario;
 		
+	}
+	
+	//atv06 - 9
+	public ListaDupla transferirPilhaParaLista() {
+		if (this.eVazia()) return new ListaDupla();
+		
+		ListaDupla lista = new ListaDupla();
+		PilhaContig aux = new PilhaContig(topo);
+		
+		while(!this.eVazia()) {
+			aux.push(this.pop());
+		}
+		
+		while(!aux.eVazia()) {
+			lista.inserirUltimo(aux.pop());
+		}
+		
+		return lista;
+	}
+	
+	//atv06 - 10
+	public void retirarX(int x) {
+		PilhaContig aux = new PilhaContig(topo);
+		int num;
+		
+		while(!this.eVazia()) {
+			num = this.pop();
+			if (num != x) {
+				aux.push(num);
+			}
+		}
+		while (!aux.eVazia()) {			
+			this.push(aux.pop());
+		}
+	}
+	
+	//atv06 - 11
+	public void inserirNumerosChaves(ListaDupla lista, int x) {
+		NoDupla atual = lista.getPrim();
+		
+		while (atual != null) {
+			if (atual.getInfo() == x) {
+				this.push(atual.getInfo());
+			}
+			atual = atual.getProx();
+		}
+	}
+	
+	//atv06 - 13
+	public int potenciaPilha() {
+		PilhaContig aux = new PilhaContig(topo);
+		int valor;
+		int resultado = 1;
+		
+		while(!this.eVazia()) {
+			valor = this.pop();
+			resultado = resultado * (int)(Math.pow(valor, topo));
+			aux.push(valor);
+		}
+		while (!aux.eVazia()) {
+			this.push(aux.pop());
+		}
+		return resultado;
 	}
 	
 	@Override

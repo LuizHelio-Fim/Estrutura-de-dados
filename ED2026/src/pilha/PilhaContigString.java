@@ -97,6 +97,28 @@ public class PilhaContigString {
         return true;
     }
     
+    //atv06 - 12
+    public boolean verificarPalindromo(String palavra) {
+        PilhaContigString pilha = new PilhaContigString(palavra.length());
+        PilhaContigString aux = new PilhaContigString(palavra.length());
+
+        for (int i = 0; i < palavra.length(); i++) {
+            pilha.push(String.valueOf(palavra.charAt(i)));
+        }
+
+        for (int i = palavra.length() - 1; i >= 0; i--) {
+            aux.push(String.valueOf(palavra.charAt(i)));
+        }
+
+        while (!pilha.eVazia()) {
+            if (!pilha.pop().equals(aux.pop())) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+    
     @Override
 	public String toString() {
 	    StringBuilder sb = new StringBuilder();
