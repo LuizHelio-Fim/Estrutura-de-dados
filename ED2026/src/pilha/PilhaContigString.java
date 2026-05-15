@@ -119,6 +119,27 @@ public class PilhaContigString {
         return true;
     }
     
+    //atv06 - 15
+    public boolean verificarInverso(String x, String y){
+    	if (x.length() != y.length()){
+    		return false;
+    	}else{
+    		PilhaContigString pilha = new PilhaContigString(x.length());
+    		String inverso="";
+    		for (int i=0; i < x.length();i++){
+    			pilha.push(String.valueOf(x.charAt(i)));
+    		}
+    		while (!pilha.eVazia()){
+    			inverso += pilha.pop();
+    		}
+    		if (inverso.equals(y)){
+    			return true;
+    		}else{
+    			return false;
+    		}
+    	}
+    }
+    
     @Override
 	public String toString() {
 	    StringBuilder sb = new StringBuilder();
