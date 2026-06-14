@@ -109,6 +109,96 @@ public class Arvore {
 		return maior;
 	}
 	
+	//Mostrar todos os nós folhas
+	public int[] mostrarFolhas() {
+	    int[] vet = new int[this.quantNos];
+	    int[] n = {0};
+
+	    mostrarFolhas(this.raiz, vet, n);
+
+	    int[] resultado = new int[n[0]];
+	    for (int i = 0; i < n[0]; i++) {
+	        resultado[i] = vet[i];
+	    }
+
+	    return resultado;
+	}
+	private void mostrarFolhas(NoArv arv, int[] vet, int[] n) {
+	    if (arv != null) {
+
+	        mostrarFolhas(arv.getEsq(), vet, n);
+	        mostrarFolhas(arv.getDir(), vet, n);
+
+	        if (arv.getEsq() == null && arv.getDir() == null) {
+	            vet[n[0]] = arv.getInfo();
+	            n[0]++;
+	        }
+	    }
+	}
+	
+	// Mostrar a soma de todos os numeros da arvore
+	public int somarTodos() {
+	    int[] soma = {0};
+	    
+	    fazSomaTodos(this.raiz, soma);
+	    return soma[0];
+	}
+	private void fazSomaTodos(NoArv arv, int[] soma) {
+	    if (arv != null) {
+
+	        soma[0] += arv.getInfo();
+	        fazSomaTodos(arv.getEsq(), soma);
+	        fazSomaTodos(arv.getDir(), soma);
+	    }
+	}
+	
+	// Mostrar a soma somente dos numeros pares da arvore
+	public int somarPares() {
+	    int[] soma = {0};
+
+	    fazSomaPares(this.raiz, soma);
+
+	    return soma[0];
+	}
+	private void fazSomaPares(NoArv arv, int[] soma) {
+	    if (arv != null) {
+
+	        if (arv.getInfo() % 2 == 0) {
+	            soma[0] += arv.getInfo();
+	        }
+
+	        fazSomaPares(arv.getEsq(), soma);
+	        fazSomaPares(arv.getDir(), soma);
+	    }
+	}
+	
+	// Mostrar somente os numeros pares
+	public int[] mostrarPares() {
+	    int[] vet = new int[this.quantNos];
+	    int[] n = {0};
+
+	    mostrarPares(this.raiz, vet, n);
+
+	    int[] resultado = new int[n[0]];
+	    for (int i = 0; i < n[0]; i++) {
+	        resultado[i] = vet[i];
+	    }
+
+	    return resultado;
+	}
+	private void mostrarPares(NoArv arv, int[] vet, int[] n) {
+	    if (arv != null) {
+
+	        if (arv.getInfo() % 2 == 0) {
+	            vet[n[0]] = arv.getInfo();
+	            n[0]++;
+	        }
+
+	        mostrarPares(arv.getEsq(), vet, n);
+	        mostrarPares(arv.getDir(), vet, n);
+	    }
+	}
+	
 	//caminhamento central
 	public int [] CamCentral (){
 		int [] n = new int[1];
